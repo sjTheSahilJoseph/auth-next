@@ -20,15 +20,35 @@ function Navbar() {
                             </li>
                         </div>
 
+
                         <div className="auth">
-                            <>
-                                <li className="mx-4 mt-5">
-                                    <Link href={'/login'} className="text-white font-bold">Login</Link>
-                                </li>
-                                <li className="mx-4 mb-[2rem]">
-                                    <Link href={'/register'} className="text-white font-bold">Register</Link>
-                                </li>
-                            </>
+
+                            {!session ? (
+                                <>
+                                    <li className="mx-4 mt-5">
+                                        <Link href={'/login'} className="text-white font-bold">Login</Link>
+                                    </li>
+                                    <li className="mx-4 mb-[2rem]">
+                                        <Link href={'/register'} className="text-white font-bold">Register</Link>
+                                    </li>
+                                </>
+                            ) : (
+
+                                <>
+
+                                    <h1 className="text-yellow-200">
+                                        {session.user?.email}
+                                    </h1>
+
+
+                                    <li>
+                                        <button onClick={() => {
+                                            signOut();
+                                        }} className="p-2 px-5 mb-[2rem] bg-red-600 rounded">Log Out</button>
+                                    </li>
+
+                                </>
+                            )}
                         </div>
 
 
